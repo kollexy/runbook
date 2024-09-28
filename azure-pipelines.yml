@@ -19,9 +19,9 @@ steps:
 
 
 - script: |
-    FILE_PATH = '$(System.DefaultWorkingDirectory)/testdata.json'
-    PLACEHOLDER = 'dbpassword'
-    DB_PASSWORD=$(DB_PASSWORD)
+    FILE_PATH='$(System.DefaultWorkingDirectory)/testdata.json'
+    PLACEHOLDER='dbpassword'
+    DB_PASSWORD=${DB_PASSWORD}
     sed -i "s/${PLACEHOLDER}/${DB_PASSWORD}/g" ${FILE_PATH}
     
 
