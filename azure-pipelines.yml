@@ -13,7 +13,13 @@ steps:
 - script: echo Hello, world!
   displayName: 'Run a one-line script'
 
+- task: DownloadSecureFile@1
+  inputs:
+    secureFile: 'DB_PASSWORD'
+
+
 - script: |
-    echo Add other tasks to build, test, and deploy your project.
-    echo See https://aka.ms/yaml
-  displayName: 'Run a multi-line script'
+    FILE_PATH = '$(System.DefaultWorkingDirectory)/testdata.json'
+    PLACEHOLDER = 'dbpassword'
+    DB_CONNECTION_STRING=$(cat $(System.DefaultWorkingDirectory)/$(DBStringTask.secureFilePath))
+
