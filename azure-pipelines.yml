@@ -8,18 +8,20 @@ trigger:
 
 pool:
   vmImage: ubuntu-latest
+variables:
+- group: secrets
+- name: DB_PASSWORD
+  value: $(DB_PASSWORD)
 
 steps:
 - script: echo Hello, world!
   displayName: 'Run a one-line script'
 
-- task: DownloadSecureFile@1
-  inputs:
-    secureFile: 'DB_PASSWORD'
-
 
 - script: |
     FILE_PATH = '$(System.DefaultWorkingDirectory)/testdata.json'
     PLACEHOLDER = 'dbpassword'
-    DB_CONNECTION_STRING=$(cat $(System.DefaultWorkingDirectory)/$(DBStringTask.secureFilePath))
+    DB_PASSWORD=$(DB_PASSWORD)
+    sed -i "s/${PLACEHOLDER}/${DB_PASSWORD}/g" ${FILE_PATH}
+    
 
