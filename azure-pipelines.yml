@@ -9,7 +9,7 @@ trigger:
 pool:
   vmImage: ubuntu-latest
 variables:
-- group: secrets
+- group: db_password
 - name: DB_PASSWORD
   value: $(DB_PASSWORD)
 
