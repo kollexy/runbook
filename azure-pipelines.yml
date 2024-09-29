@@ -23,6 +23,7 @@ steps:
     script: |
       echo "Print DB Connection string"
       echo "Value: $(DB_STRING)"
+      echo "$(Build.BuildId)"
 
 - task: FileTransform@2
   displayName: Replace File
