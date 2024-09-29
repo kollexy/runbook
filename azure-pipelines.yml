@@ -29,6 +29,6 @@ steps:
 - task: FileTransform@2
   displayName: Replace File
   inputs:
-    folderPath: "."
+    folderPath: "$(System.DefaultWorkingDirectory)/"
     jsonTargetFiles: 'testdata.json'
 
