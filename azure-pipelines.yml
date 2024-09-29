@@ -10,18 +10,20 @@ pool:
   vmImage: ubuntu-latest
 variables:
 - group: db_connection_vrg
-- name: DB_PASSWORD
-  value: $(DB_PASSWORD)
+- name: "AppSettings.SqlConnectionString"
+  value: $(DB_STRING)
 
 steps:
 - script: echo Hello, world!
   displayName: 'Run a one-line script'
 
 
-- script: |
-    FILE_PATH='$(System.DefaultWorkingDirectory)/testdata.json'
-    PLACEHOLDER='dbpassword'
-    
-    sed -i "s/${PLACEHOLDER}/${DB_PASSWORD}/g" ${FILE_PATH}
+
+- task: PowerShell@2
+  inputs:
+    targetType: 'inline'
+    script: |
+      echo "Print DB Connection string"
+      echo "Vlalue: $(DB_STRING)"
     
 
