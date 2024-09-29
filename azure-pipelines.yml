@@ -24,6 +24,6 @@ steps:
     targetType: 'inline'
     script: |
       echo "Print DB Connection string"
-      echo "Vlalue: $(DB_STRING)"
+      echo "Value: $(DB_STRING)"
     
 
