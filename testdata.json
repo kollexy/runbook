@@ -1,6 +1,6 @@
 {
   "AppSettings": {
-    "SqlConnectionString": "Server=tcp:127.0.0.1,1433;Initial Catalog=ToDoer;Persist Security Info=False;User Id=sa;Password=dbpassword;Connection Timeout=30",
+    "SqlConnectionString": "dbstring",
     "BaseAppUrl": "https://localhost:3000"
   },
   "TestUser": {
