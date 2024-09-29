@@ -17,6 +17,19 @@ steps:
 - script: echo Hello, world!
   displayName: 'Run a one-line script'
 
+- task: PowerShell@2
+  inputs:
+    targetType: 'inline'
+    script: |
+      $filePath = "$(System.DefaultWorkingDirectory)/testdata.json"
+      $fileContent = Get-Content $filePath
+      if ($fileContent -notmatch "YourActualConnectionString") {
+        Write-Host "Transformation required, applying changes..."
+        sed -i "s/dbpassword/YourActualConnectionString/g" $filePath
+      } else {
+        Write-Host "Transformation not needed, skipping..."
+      }
+  displayName: 'Conditional Transformation of JSON file'
 
 
 - task: PowerShell@2
